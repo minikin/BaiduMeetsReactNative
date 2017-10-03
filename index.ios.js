@@ -11,6 +11,7 @@ export default class BaiduMeetsReactNative extends Component {
   render() {
     return (
       <View>
+        <Text>BaiduMeetsReactNative</Text>
       </View>
     );
   }
