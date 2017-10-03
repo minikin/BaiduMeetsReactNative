@@ -22,7 +22,7 @@
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
   mapManager =  [[BMKMapManager alloc ] init];
-  [mapManager start:@"" generalDelegate: nil];
+  [mapManager start:@"NoUFsYw5vIKGbRYuRma76eVqG1eAX2S0" generalDelegate: nil];
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"BaiduMeetsReactNative"

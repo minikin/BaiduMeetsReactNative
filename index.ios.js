@@ -6,13 +6,12 @@ import {
   Text,
   View
 } from 'react-native';
+import BaiduMapDemo from './BaiduMapDemo';
 
 export default class BaiduMeetsReactNative extends Component {
   render() {
     return (
-      <View>
-        <Text>BaiduMeetsReactNative</Text>
-      </View>
+      <BaiduMapDemo />
     );
   }
 }
