@@ -89,6 +89,12 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+repositories {
+    flatDir {
+        dir 'libs'
+    }
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
@@ -130,6 +136,11 @@ android {
             }
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -138,6 +149,7 @@ dependencies {
     compile 'com.facebook.react:react-native:+'
     // From node_modules
     compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/httpmime-4.1.2.jar')
 }
 
 // Run this once to be able to run the application with BUCK

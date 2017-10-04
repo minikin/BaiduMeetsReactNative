@@ -1,8 +1,17 @@
 package com.baidumeetsreactnative;
 
+import android.content.Context;
+import android.os.Bundle;
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
+    }
 
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -12,4 +21,6 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "BaiduMeetsReactNative";
     }
+
+
 }
