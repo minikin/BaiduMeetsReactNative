@@ -89,12 +89,6 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-repositories {
-    flatDir {
-        dir 'libs'
-    }
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
