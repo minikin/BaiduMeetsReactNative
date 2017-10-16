@@ -20,7 +20,6 @@
 }
 
 -(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
-
 -(NSMutableDictionary *)getEmptyBody;
 
 @end

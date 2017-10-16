@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { MapView, MapTypes, Geolocation } from './Baidu/Baidu';
 import {
     Button,
@@ -59,73 +60,6 @@ export default class BaiduMapDemo extends Component {
               }}
             >
             </MapView>
-    
-            <View style={styles.row}>
-              <Button title="Normal" onPress={() => {
-                this.setState({
-                  mapType: MapTypes.NORMAL
-                });
-              }} />
-              <Button style={styles.btn} title="Satellite" onPress={() => {
-                this.setState({
-                  mapType: MapTypes.SATELLITE
-                });
-              }} />
-    
-              <Button style={styles.btn} title="Locate" onPress={() => {
-                console.warn('center', this.state.center);
-                Geolocation.getCurrentPosition()
-                  .then(data => {
-                    console.warn(JSON.stringify(data));
-                    this.setState({
-                      zoom: 15,
-                      marker: {
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        title: 'Your location'
-                      },
-                      center: {
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        rand: Math.random()
-                      }
-                    });
-                  })
-                  .catch(e =>{
-                    console.warn(e, 'error');
-                  })
-              }} />
-            </View>
-    
-            <View style={styles.row}>
-              <Button title="Zoom+" onPress={() => {
-                this.setState({
-                  zoom: this.state.zoom + 1
-                });
-              }} />
-              <Button title="Zoom-" onPress={() => {
-                if(this.state.zoom > 0) {
-                  this.setState({
-                    zoom: this.state.zoom - 1
-                  });
-                }
-                
-              }} />
-            </View>
-    
-            <View style={styles.row}>
-              <Button title="Traffic" onPress={() => {
-                this.setState({
-                  trafficEnabled: !this.state.trafficEnabled
-                });
-              }} />
-    
-              <Button title="Baidu HeatMap" onPress={() => {
-                this.setState({
-                  baiduHeatMapEnabled: !this.state.baiduHeatMapEnabled
-                });
-              }} />
-            </View>
           </View>
         );
       }
@@ -144,7 +78,7 @@ export default class BaiduMapDemo extends Component {
       },
       map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 200,
+        height: Dimensions.get('window').height,
         marginBottom: 16
       }
     });

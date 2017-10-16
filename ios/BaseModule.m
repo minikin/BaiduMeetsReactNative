@@ -10,7 +10,7 @@
 
 @implementation BaseModule
 
-@synthesize bridge = _bridge;
+RCT_EXPORT_MODULE();
 
 -(NSMutableDictionary *)getEmptyBody {
     NSMutableDictionary *body = @{}.mutableCopy;
@@ -20,7 +20,5 @@
 -(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body {
     [self.bridge.eventDispatcher sendDeviceEventWithName:name body:body];
 }
-
-RCT_EXPORT_MODULE();
 
 @end
