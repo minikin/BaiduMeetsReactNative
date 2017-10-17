@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MapView, MapTypes, Geolocation } from './Baidu/Baidu';
-import {
-    Button,
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    TouchableHighlight
-  } from 'react-native';
-  
-import Dimensions from 'Dimensions';
+import { StyleSheet, View } from 'react-native';
 
 export default class BaiduMapDemo extends Component {
     
@@ -19,13 +10,11 @@ export default class BaiduMapDemo extends Component {
     
         this.state = {
           mayType: MapTypes.NORMAL,
-          zoom: 15,
+          zoom: 10,
           center: {
             longitude: 113.981718,
             latitude: 22.542449
           },
-          trafficEnabled: false,
-          baiduHeatMapEnabled: false,
           markers: [{
             longitude: 113.981718,
             latitude: 22.542449,
@@ -33,31 +22,21 @@ export default class BaiduMapDemo extends Component {
           },{
             longitude: 113.995516,
             latitude: 22.537642,
-            title: ""
+            title: "world world world"
           }]
         };
-      }
-    
-      componentDidMount() {
       }
     
       render() {
         return (
           <View style={styles.container}>
             <MapView 
-              trafficEnabled={this.state.trafficEnabled}
-              baiduHeatMapEnabled={this.state.baiduHeatMapEnabled}
               zoom={this.state.zoom}
               mapType={this.state.mapType}
               center={this.state.center}
               marker={this.state.marker}
               markers={this.state.markers}
               style={styles.map}
-              onMarkerClick={(e) => {
-                console.warn(JSON.stringify(e));
-              }}
-              onMapClick={(e) => {
-              }}
             >
             </MapView>
           </View>
@@ -65,20 +44,20 @@ export default class BaiduMapDemo extends Component {
       }
     }
     
-    const styles = StyleSheet.create({
-      row: {
-        flexDirection: 'row',
-        height: 40
-      },
-      container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-      },
-      map: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-        marginBottom: 16
-      }
-    });
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    height: 40
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  map: {
+    flex:1,
+    width:'100%',
+    height: '100%'
+  }
+});

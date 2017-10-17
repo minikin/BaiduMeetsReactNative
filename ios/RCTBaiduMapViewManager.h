@@ -10,7 +10,6 @@
 
 @interface RCTBaiduMapViewManager : RCTViewManager<BMKMapViewDelegate>
 
-+(void)initSDK:(NSString *)key;
 -(void)sendEvent:(RCTBaiduMapView *) mapView params:(NSDictionary *) params;
 
 @end
