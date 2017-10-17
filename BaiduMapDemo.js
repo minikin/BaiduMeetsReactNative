@@ -7,10 +7,10 @@ export default class BaiduMapDemo extends Component {
     
       constructor() {
         super();
-    
+  
         this.state = {
-          mayType: MapTypes.NORMAL,
-          zoom: 10,
+          mayType: MapTypes.SATELLITE,
+          zoom: 14,
           center: {
             longitude: 113.981718,
             latitude: 22.542449
@@ -34,7 +34,6 @@ export default class BaiduMapDemo extends Component {
               zoom={this.state.zoom}
               mapType={this.state.mapType}
               center={this.state.center}
-              marker={this.state.marker}
               markers={this.state.markers}
               style={styles.map}
             >
@@ -45,15 +44,10 @@ export default class BaiduMapDemo extends Component {
     }
     
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    height: 40
-  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
   map: {
     flex:1,

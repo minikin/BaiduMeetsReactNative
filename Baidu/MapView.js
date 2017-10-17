@@ -28,7 +28,6 @@ export default class MapView extends Component {
 
   static defaultProps = {
     zoomControlsVisible: true,
-    baiduHeatMapEnabled: false,
     mapType: MapTypes.NORMAL,
     markers: [],
     center: null,

@@ -1,6 +1,5 @@
 export default {
   NONE: 0,
   NORMAL: 1,
-  SATELLITE: 2,
-  CUSTOM: 3
+  SATELLITE: 2
 };

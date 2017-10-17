@@ -8,9 +8,8 @@
 
 #import "RCTBaiduMapView.h"
 
-@interface RCTBaiduMapViewManager : RCTViewManager<BMKMapViewDelegate>
+@interface RCTBaiduMapViewManager: RCTViewManager <BMKMapViewDelegate>
 
 -(void)sendEvent:(RCTBaiduMapView *) mapView params:(NSDictionary *) params;
-
 @end
 

@@ -15,9 +15,8 @@ RCT_EXPORT_VIEW_PROPERTY(mapType, int)
 RCT_EXPORT_VIEW_PROPERTY(zoom, float)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSArray*)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
-
 RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
-    [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D:json] : defaultView.centerCoordinate];
+    [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D: json] : defaultView.centerCoordinate];
 }
 
 - (UIView *)view {
@@ -35,7 +34,6 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
 }
 
 -(void)mapStatusDidChanged: (RCTBaiduMapView *)mapView   {
-  NSLog(@"mapStatusDidChanged");
   CLLocationCoordinate2D targetGeoPt = [mapView getMapStatus].targetGeoPt;
   NSDictionary* event = @{
                           @"type": @"onMapStatusChange",
@@ -48,12 +46,11 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
                               @"overlook": @""
                               }
                           };
-  [self sendEvent: mapView params:event];
+  [self sendEvent: mapView params: event];
 }
 
--(void)mapView:(RCTBaiduMapView *)mapView
-didSelectAnnotationView:(BMKAnnotationView *)view {
-  NSDictionary* event = @{
+-(void)mapView:(RCTBaiduMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+  NSDictionary *event = @{
                           @"type": @"onMarkerClick",
                           @"params": @{
                               @"title": [[view annotation] title],
@@ -63,15 +60,13 @@ didSelectAnnotationView:(BMKAnnotationView *)view {
                                   }
                               }
                           };
-  [self sendEvent:mapView params:event];
+  [self sendEvent: mapView params: event];
 }
 
-
-
-
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+    if ([annotation isKindOfClass: [BMKPointAnnotation class]]) {
+        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc]
+                                                   initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
         return newAnnotationView;
