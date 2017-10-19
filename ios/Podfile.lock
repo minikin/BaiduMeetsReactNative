@@ -1,5 +1,5 @@
 PODS:
-  - BaiduMapKit (3.4.0)
+  - BaiduMapKit (3.4.2)
   - React (0.48.4):
     - React/Core (= 0.48.4)
   - React/Core (0.48.4):
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
-  BaiduMapKit: 0a5e5e0b1e3fd8dc5aceb40ab9b89e52e1d13df9
+  BaiduMapKit: f61b19ecf07a3f2deede72b221b366bf698739ed
   React: 6d68659481a8a56e0f6b3dbecd984d5b9bb2d6c5
   Yoga: ccefa1454b2e9825dce3b2df98088b7f0e3c2675
 
