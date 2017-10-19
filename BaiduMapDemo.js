@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { MapView, MapTypes, Geolocation } from './Baidu/Baidu';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, NativeModules, Image } from 'react-native';
+import { MapView, MapTypes, MapHelper } from './Baidu/Baidu';
+
+const mapHelper = new MapHelper();
 
 export default class BaiduMapDemo extends Component {
     
@@ -10,7 +11,7 @@ export default class BaiduMapDemo extends Component {
   
         this.state = {
           mayType: MapTypes.SATELLITE,
-          zoom: 14,
+          zoom: 10,
           center: {
             longitude: 113.981718,
             latitude: 22.542449
@@ -26,7 +27,11 @@ export default class BaiduMapDemo extends Component {
           }]
         };
       }
-    
+
+      componentWillMount() {
+         mapHelper.setPinImageWith('/Users/mnkn/Desktop/WIP/MapDemo/BaiduMeetsReactNative/marker.png');
+      }
+
       render() {
         return (
           <View style={styles.container}>

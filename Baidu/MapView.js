@@ -23,7 +23,7 @@ export default class MapView extends Component {
     markers: PropTypes.array,
     onMapStatusChange: PropTypes.func,
     onMapLoaded: PropTypes.func,
-    onMarkerClick: PropTypes.func,
+    onMarkerClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -34,8 +34,8 @@ export default class MapView extends Component {
     zoom: 10
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   _onChange(event) {

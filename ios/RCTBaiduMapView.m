@@ -41,8 +41,7 @@
                 annotation = [[BMKPointAnnotation alloc] init];
                 [self addMarker: annotation option: option];
                 [_annotations addObject: annotation];
-            }
-            else {
+            } else {
                 [self updateMarker: annotation option: option];
             }
         }
@@ -83,6 +82,5 @@
     annotation.coordinate = coor;
     annotation.title = title;
 }
-
 
 @end
