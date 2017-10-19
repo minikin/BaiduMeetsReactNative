@@ -29,7 +29,9 @@ export default class BaiduMapDemo extends Component {
       }
 
       componentWillMount() {
-         mapHelper.setPinImageWith('/Users/mnkn/Desktop/WIP/MapDemo/BaiduMeetsReactNative/marker.png');
+        mapHelper.setCustomMapStyle(true)
+        mapHelper.setCustomMapWithJSON('/Users/mnkn/Desktop/WIP/MapDemo/BaiduMeetsReactNative/MidnightBlueStyle.json')
+        mapHelper.setPinImageWith('/Users/mnkn/Desktop/WIP/MapDemo/BaiduMeetsReactNative/marker.png');
       }
 
       render() {

@@ -9,11 +9,11 @@ export default class MapHelper {
         module.setPinImageWith(imagePath)
     }
 
-    setCustomMapStyle(){
-        
+    setCustomMapStyle(enable){
+        module.customMapStyle(enable)
     }
 
     setCustomMapWithJSON(stylePath) {
-
+        module.setCustomMapStyleWith(stylePath)
     }
 }

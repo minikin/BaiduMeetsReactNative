@@ -16,9 +16,19 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setPinImageWith:(NSString *)imageName) {
   UIImage *image = [UIImage imageWithContentsOfFile: imageName];
-  RCTLogInfo(@"IMAGE ======== %@", image.debugDescription);
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:image forKey:@"pinImage"];
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:image forKey:pinImageKey];
   [[NSNotificationCenter defaultCenter] postNotificationName:sendCustomPinImage object:self userInfo:userInfo];
+}
+
+RCT_EXPORT_METHOD(setCustomMapStyleWith:(NSString *)JSONFile) {
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:JSONFile forKey:jsonFileKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName: customMapStyleWithJSON object:self userInfo: userInfo];
+}
+
+RCT_EXPORT_METHOD(customMapStyle:(BOOL)enable) {
+  RCTLogInfo(@"======== JS NEWS ======== %d",enable);
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject: [NSNumber numberWithBool:enable]  forKey: customMapKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName: useCustomMapStyle object:self userInfo: userInfo];
 }
 
 @end

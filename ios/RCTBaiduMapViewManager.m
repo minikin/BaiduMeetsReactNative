@@ -14,6 +14,10 @@
 @implementation RCTBaiduMapViewManager;
 
 UIImage *pinImage;
+BOOL customMapStyle;
+
+// MARK: - View properties
+
 RCT_EXPORT_MODULE(RCTBaiduMapView)
 RCT_EXPORT_VIEW_PROPERTY(mapType, int)
 RCT_EXPORT_VIEW_PROPERTY(zoom, float)
@@ -23,6 +27,8 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
     [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D: json] : defaultView.centerCoordinate];
 }
 
+// MARK: - View Lifecycle
+
 - (instancetype)init {
   self = [super init];
   if (self) {
@@ -30,6 +36,17 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
                                          selector:@selector(receivedImageNotification:)
                                          name:sendCustomPinImage
                                          object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedCustomMapStyleNotification:)
+                                                 name:useCustomMapStyle
+                                               object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedCustomMapStyleJSONFileNotification:)
+                                                 name:customMapStyleWithJSON
+                                               object: nil];
+    
   }
   return self;
 }
@@ -39,26 +56,33 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
 }
 
 - (UIView *)view {
-    [self setMapStyleWithJson];
     RCTBaiduMapView *mapView = [RCTBaiduMapView new];
     mapView.delegate = self;
-    [RCTBaiduMapView enableCustomMapStyle:true];
+    [RCTBaiduMapView enableCustomMapStyle: customMapStyle];
     return mapView;
 }
 
+// MARK: - Notifacation mathods
+
 -(void)receivedImageNotification:(NSNotification *) notification {
   NSDictionary *userInfo = notification.userInfo;
-  UIImage *image = [userInfo valueForKey:@"pinImage"];
+  UIImage *image = [userInfo valueForKey:pinImageKey];
   pinImage = image;
-  RCTLogInfo(@"receiveTestNotification 1==1=12-=11=-21=- %@", image.description);
 }
 
--(void)setMapStyleWithJson {
-  NSString* path = [[NSBundle mainBundle] pathForResource:@"MidnightBlueStyle" ofType:@"json"];
-  NSLog(@"MidnightBlueStyle %@", path);
+-(void)receivedCustomMapStyleJSONFileNotification:(NSNotification *) notification {
+  NSDictionary *userInfo = notification.userInfo;
+  NSString *path = [userInfo valueForKey:jsonFileKey];
   [RCTBaiduMapView customMapStyle: path];
 }
 
+-(void)receivedCustomMapStyleNotification:(NSNotification *) notification {
+  NSDictionary *userInfo = notification.userInfo;
+  NSNumber *enable = [userInfo valueForKey:customMapKey];
+  customMapStyle = [enable boolValue];
+}
+
+// MARK: - BMKMapViewDelegate
 
 -(void)mapViewDidFinishLoading:(RCTBaiduMapView *)mapView {
     NSDictionary* event = @{
@@ -103,16 +127,14 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
     if ([annotation isKindOfClass: [BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc]
                                                    initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-        [self setPinWithImage: newAnnotationView];
+        newAnnotationView.image = pinImage;
         newAnnotationView.animatesDrop = YES;
         return newAnnotationView;
     }
     return nil;
 }
 
--(void)setPinWithImage:(BMKPinAnnotationView *)ann {
-  ann.image = pinImage;
-}
+// MARK: - Helpers
 
 -(void)sendEvent:(RCTBaiduMapView *)mapView params:(NSDictionary *) params {
     if (!mapView.onChange) {
