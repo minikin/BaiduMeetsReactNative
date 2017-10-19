@@ -2,7 +2,7 @@
 //  BaiduBridgeHelper.h
 //  BaiduMeetsReactNative
 //
-//  Created by mnkn on 19.10.17.
+//  Created by Sasha Prokhorenko on 19.10.17.
 //  Copyright © 2017 Facebook. All rights reserved.
 //
 

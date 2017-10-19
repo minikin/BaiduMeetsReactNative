@@ -9,6 +9,7 @@
 #import "RCTBaiduMapViewManager.h"
 #import <UIKit/UIKit.h>
 #import <React/RCTLog.h>
+#import "Constants.h"
 
 @implementation RCTBaiduMapViewManager;
 
@@ -27,7 +28,7 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
   if (self) {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                          selector:@selector(receivedImageNotification:)
-                                         name:@"ImageData.From.JS"
+                                         name:sendCustomPinImage
                                          object: nil];
   }
   return self;

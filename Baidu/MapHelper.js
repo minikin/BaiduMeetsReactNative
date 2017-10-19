@@ -8,4 +8,12 @@ export default class MapHelper {
     setPinImageWith(imagePath){
         module.setPinImageWith(imagePath)
     }
+
+    setCustomMapStyle(){
+        
+    }
+
+    setCustomMapWithJSON(stylePath) {
+
+    }
 }
